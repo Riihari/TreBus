@@ -10,10 +10,10 @@ import Foundation
 
 class HttpHelper: NSObject {
     
-    func JSONParseArray(jsonString:String) -> [Dictionary<String, AnyObject>] {
-        if let data: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding) {
+    func JSONParseArray(_ jsonString:String) -> [Dictionary<String, AnyObject>] {
+        if let data: Data = jsonString.data(using: String.Encoding.utf8) {
             do {
-                if let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? NSArray {
+                if let jsonObj = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSArray {
                     if let jsonDict = jsonObj as? [Dictionary<String, AnyObject>] {
                         return jsonDict
                     }
@@ -26,10 +26,10 @@ class HttpHelper: NSObject {
         return [[String: AnyObject]()]
     }
     
-    func JSONParseDict(jsonString:String) -> Dictionary<String, AnyObject> {
-        if let data: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding) {
+    func JSONParseDict(_ jsonString:String) -> Dictionary<String, AnyObject> {
+        if let data: Data = jsonString.data(using: String.Encoding.utf8) {
             do {
-                if let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? Dictionary<String, AnyObject> {
+                if let jsonObj = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? Dictionary<String, AnyObject> {
                     return jsonObj
                 }
             }
@@ -40,20 +40,20 @@ class HttpHelper: NSObject {
         return [String: AnyObject]()
     }
     
-    func HTTPSendRequest(request: NSMutableURLRequest, callback: (String, String?) -> Void) {
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+    func HTTPSendRequest(_ request: NSMutableURLRequest, callback: @escaping (String, String?) -> Void) {
+        let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
             data, response, error in
             if error != nil {
                 callback("", (error!.localizedDescription) as String)
             } else {
-                callback(NSString(data: data!, encoding: NSUTF8StringEncoding) as! String, nil)
+                callback(NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! String, nil)
             }
         })
         task.resume()
     }
     
-    func HTTPGetJSON(url: String, callback: (Dictionary<String, AnyObject>, String?) -> Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+    func HTTPGetJSON(_ url: String, callback: @escaping (Dictionary<String, AnyObject>, String?) -> Void) {
+        let request = NSMutableURLRequest(url: URL(string: url)!)
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         HTTPSendRequest(request) {
             (data: String, error: String?) -> Void in
@@ -67,8 +67,8 @@ class HttpHelper: NSObject {
         }
     }
     
-    func HTTPGetJSONArray(url: String, callback: ([Dictionary<String, AnyObject>], String?) -> Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+    func HTTPGetJSONArray(_ url: String, callback: @escaping ([Dictionary<String, AnyObject>], String?) -> Void) {
+        let request = NSMutableURLRequest(url: URL(string: url)!)
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         HTTPSendRequest(request) {
             (data: String, error: String?) -> Void in

@@ -9,12 +9,12 @@
 import MapKit
 
 extension MapViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? BusAnnotation {
             var view: MKAnnotationView
             let identifier = "pin"
             
-            if let dequedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) {
+            if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
                 dequedView.annotation = annotation
                 view = dequedView
             } else {

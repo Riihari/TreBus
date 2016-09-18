@@ -14,7 +14,7 @@ class BusLocation: NSObject {
     var annotations = [BusAnnotation]()
     
     // MARK: HTTP and JSON to get traffic data
-    func updateBusInformation(callBack: ([BusAnnotation]?) -> Void) {
+    func updateBusInformation(_ callBack: @escaping ([BusAnnotation]?) -> Void) {
         let httpHelper = HttpHelper()
     
         httpHelper.HTTPGetJSON("http://data.itsfactory.fi/siriaccess/vm/json") {
@@ -30,30 +30,30 @@ class BusLocation: NSObject {
         }
     }
 
-    func parseBusLocations(data: Dictionary<String, AnyObject>) -> Void {
-        guard let feed = data["Siri"] as? NSDictionary else {
+    func parseBusLocations(_ data: [String: Any]) -> Void {
+        guard let feed = data["Siri"] as? [String: Any] else {
             return
         }
         
-        guard let service = feed["ServiceDelivery"] as? NSDictionary else {
+        guard let service = feed["ServiceDelivery"] as? [String: Any] else {
             return
         }
         
-        guard let entries = service["VehicleMonitoringDelivery"] as? NSArray else {
+        guard let entries = service["VehicleMonitoringDelivery"] as? [[String: Any]] else {
             return
         }
         
-        for elem: AnyObject in entries {
-            guard let activities = elem["VehicleActivity"] as? NSArray else {
+        for entry in entries {
+            guard let activities = entry["VehicleActivity"] as? [[String: Any]] else {
                 return
             }
             
-            for activity: AnyObject in activities {
+            for activity in activities {
                 guard let journey = activity["MonitoredVehicleJourney"] as? NSDictionary else {
                     return
                 }
                 
-                guard let vehicleLoc = journey["VehicleLocation"] as? NSDictionary, let lineRef = journey["LineRef"] as? NSDictionary, let vehicleRef = journey["VehicleRef"], let destinationRef = journey["DestinationName"] as? NSDictionary, let originRef = journey["OriginName"] as? NSDictionary else {
+                guard let vehicleLoc = journey["VehicleLocation"] as? NSDictionary, let lineRef = journey["LineRef"] as? NSDictionary, let vehicleRef = journey["VehicleRef"] as? NSDictionary, let destinationRef = journey["DestinationName"] as? NSDictionary, let originRef = journey["OriginName"] as? NSDictionary else {
                     return
                 }
                 

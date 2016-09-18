@@ -11,18 +11,18 @@ import MapKit
 
 class MapViewController: UIViewController {
     var busLocation = BusLocation()
-    var timer = NSTimer()
+    var timer = Timer()
     var locationMgr = CLLocationManager()
  
     @IBOutlet weak var mapView: MKMapView!
 
-    @IBAction func centerUserLocationPressed(sender: AnyObject) {
-        mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
+    @IBAction func centerUserLocationPressed(_ sender: AnyObject) {
+        mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
     }
 
-    func updateAnnotations(annotations: [BusAnnotation]?) {
+    func updateAnnotations(_ annotations: [BusAnnotation]?) {
         if let annotations = annotations {
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.mapView.removeAnnotations(self.mapView.annotations)
                 self.mapView.addAnnotations(annotations)
             }
@@ -47,7 +47,7 @@ class MapViewController: UIViewController {
         
         mapView.setRegion(region, animated: true)
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(updateBusLocation), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updateBusLocation), userInfo: nil, repeats: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,7 +55,7 @@ class MapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkLocationAuthorizationStatus()
     }
@@ -63,20 +63,20 @@ class MapViewController: UIViewController {
     // MARK: - Segmented control for map types
     
     enum MapType: Int {
-        case Standard = 0
-        case Satellite
-        case Hybrid
+        case standard = 0
+        case satellite
+        case hybrid
     }
     
-    @IBAction func mapTypeChanged(sender: UISegmentedControl) {
+    @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
         let mapType = MapType(rawValue: sender.selectedSegmentIndex)
         switch (mapType!) {
-        case .Standard:
-            mapView.mapType = MKMapType.Standard
-        case .Satellite:
-            mapView.mapType = MKMapType.Satellite
-        case .Hybrid:
-            mapView.mapType = MKMapType.Hybrid
+        case .standard:
+            mapView.mapType = MKMapType.standard
+        case .satellite:
+            mapView.mapType = MKMapType.satellite
+        case .hybrid:
+            mapView.mapType = MKMapType.hybrid
         }
     }
     
@@ -92,9 +92,9 @@ class MapViewController: UIViewController {
     
     // MARK: - Location manager to authorize user location for Maps app
     func checkLocationAuthorizationStatus () {
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             mapView.showsUserLocation = true
-            mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
+            mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         }
         else {
             locationMgr.requestWhenInUseAuthorization()

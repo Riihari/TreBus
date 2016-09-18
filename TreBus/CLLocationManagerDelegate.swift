@@ -9,10 +9,10 @@
 import MapKit
 
 extension MapViewController: CLLocationManagerDelegate {
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
             mapView.showsUserLocation = true
-            mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
+            mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         }
     }
 }
