@@ -23,7 +23,7 @@ class BusAnnotation: NSObject, MKAnnotation {
             self.image = img
         } else {
             print(lineRef)
-            self.image = UIImage(named: "bus.png")
+            self.image = UIImage(named: "Bus.png")
         }
         self.vehicleRef = vehicleRef
         
