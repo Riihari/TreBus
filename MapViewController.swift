@@ -11,6 +11,7 @@ import MapKit
 
 class MapViewController: UIViewController {
     var busLocation = BusLocation()
+    var busStops = BusStops()
     var timer = Timer()
     var locationMgr = CLLocationManager()
  
