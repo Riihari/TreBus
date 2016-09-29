@@ -13,6 +13,8 @@
 		C09BF38A1D7730B6001874A1 /* BusAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF3891D7730B6001874A1 /* BusAnnotation.swift */; };
 		C09BF38C1D773354001874A1 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF38B1D773354001874A1 /* MapViewDelegate.swift */; };
 		C09BF38E1D7B699A001874A1 /* CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF38D1D7B6999001874A1 /* CLLocationManagerDelegate.swift */; };
+		C0A5DF5F1D9D89BD003873DF /* BusStopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A5DF5E1D9D89BD003873DF /* BusStopAnnotation.swift */; };
+		C0A5DF611D9D8AA0003873DF /* BusStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A5DF601D9D8AA0003873DF /* BusStops.swift */; };
 		C0CB6D281CC3613E0027610F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CB6D271CC3613E0027610F /* AppDelegate.swift */; };
 		C0CB6D2F1CC3613E0027610F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0CB6D2D1CC3613E0027610F /* Main.storyboard */; };
 		C0CB6D311CC3613E0027610F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0CB6D301CC3613E0027610F /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		C09BF3891D7730B6001874A1 /* BusAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusAnnotation.swift; sourceTree = "<group>"; };
 		C09BF38B1D773354001874A1 /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		C09BF38D1D7B6999001874A1 /* CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationManagerDelegate.swift; sourceTree = "<group>"; };
+		C0A5DF5E1D9D89BD003873DF /* BusStopAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopAnnotation.swift; sourceTree = "<group>"; };
+		C0A5DF601D9D8AA0003873DF /* BusStops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStops.swift; sourceTree = "<group>"; };
 		C0CB6D241CC3613E0027610F /* TreBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CB6D271CC3613E0027610F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0CB6D2E1CC3613E0027610F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				C0CB6D271CC3613E0027610F /* AppDelegate.swift */,
 				C0CB6D2D1CC3613E0027610F /* Main.storyboard */,
 				C09BF37B1D75F29F001874A1 /* BusLocation.swift */,
+				C0A5DF5E1D9D89BD003873DF /* BusStopAnnotation.swift */,
+				C0A5DF601D9D8AA0003873DF /* BusStops.swift */,
 				C09BF37D1D75F391001874A1 /* HttpHelper.swift */,
 				C03BF1F01CD62D600068A016 /* MapViewController.swift */,
 				C09BF38D1D7B6999001874A1 /* CLLocationManagerDelegate.swift */,
@@ -282,6 +288,8 @@
 				C09BF37C1D75F29F001874A1 /* BusLocation.swift in Sources */,
 				C09BF38A1D7730B6001874A1 /* BusAnnotation.swift in Sources */,
 				C0CB6D281CC3613E0027610F /* AppDelegate.swift in Sources */,
+				C0A5DF5F1D9D89BD003873DF /* BusStopAnnotation.swift in Sources */,
+				C0A5DF611D9D8AA0003873DF /* BusStops.swift in Sources */,
 				C03BF1F11CD62D600068A016 /* MapViewController.swift in Sources */,
 				C09BF37E1D75F391001874A1 /* HttpHelper.swift in Sources */,
 			);
