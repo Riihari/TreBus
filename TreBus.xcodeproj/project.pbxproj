@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C011B04B1DE7499D00644314 /* credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = C011B04A1DE7499D00644314 /* credentials.txt */; };
 		C03BF1F11CD62D600068A016 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF1F01CD62D600068A016 /* MapViewController.swift */; };
 		C09BF37C1D75F29F001874A1 /* BusLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF37B1D75F29F001874A1 /* BusLocation.swift */; };
 		C09BF37E1D75F391001874A1 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF37D1D75F391001874A1 /* HttpHelper.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C011B04A1DE7499D00644314 /* credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credentials.txt; sourceTree = "<group>"; };
 		C03BF1F01CD62D600068A016 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
 		C09BF37B1D75F29F001874A1 /* BusLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusLocation.swift; sourceTree = "<group>"; };
 		C09BF37D1D75F391001874A1 /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		C0CB6D261CC3613E0027610F /* TreBus */ = {
 			isa = PBXGroup;
 			children = (
+				C011B04A1DE7499D00644314 /* credentials.txt */,
 				C0CB6D271CC3613E0027610F /* AppDelegate.swift */,
 				C0CB6D2D1CC3613E0027610F /* Main.storyboard */,
 				C09BF37B1D75F29F001874A1 /* BusLocation.swift */,
@@ -259,6 +262,7 @@
 				C0CB6D341CC3613E0027610F /* LaunchScreen.storyboard in Resources */,
 				C0CB6D311CC3613E0027610F /* Assets.xcassets in Resources */,
 				C0CB6D2F1CC3613E0027610F /* Main.storyboard in Resources */,
+				C011B04B1DE7499D00644314 /* credentials.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
