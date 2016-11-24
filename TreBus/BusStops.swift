@@ -15,10 +15,28 @@ class BusStops: NSObject {
     func updateBusStops(location: CLLocationCoordinate2D, callBack: @escaping ([BusStopAnnotation]?) -> Void) {
 //    func updateBusStops(location: CLLocationCoordinate2D) -> Void {
         print("Get HTTP Get API data \(location.latitude), \(location.longitude)")
+
+        var user = ""
+        var pass = ""
+        
+        guard let path = Bundle.main.path(forResource: "credentials", ofType: "txt") else {
+            print("No password file!")
+            return
+        }
+        do {
+            let content = try String(contentsOfFile: path)
+            let credentials = content.components(separatedBy: "\n")
+            user = credentials[0]
+            pass = credentials[1]
+        }
+        catch {
+           print("Error reading password file")
+        }
         
         let httpHelper = HttpHelper()
         
-        httpHelper.HTTPGetJSONArray("http://api.publictransport.tampere.fi/prod/?request=stops_area&epsg_in=wgs84&epsg_out=wgs84&user=riihari&pass=bus2Track&center_coordinate=\(location.longitude),\(location.latitude)&diameter=5000") {
+//        httpHelper.HTTPGetJSONArray("http://api.publictransport.tampere.fi/prod/?request=stops_area&epsg_in=wgs84&epsg_out=wgs84&user=riihari&pass=bus2Track&center_coordinate=\(location.longitude),\(location.latitude)&diameter=5000") {
+        httpHelper.HTTPGetJSONArray("http://api.publictransport.tampere.fi/prod/?request=stops_area&epsg_in=wgs84&epsg_out=wgs84&user=\(user)&pass=\(pass)&center_coordinate=\(location.longitude),\(location.latitude)&diameter=5000") {
             (data: [Dictionary<String, AnyObject>], error: String?) -> Void in
             if error != nil {
                 print(error)
