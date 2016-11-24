@@ -46,15 +46,6 @@ extension MapViewController: MKMapViewDelegate {
         return nil
     }
     
-    func updateBusStopAnnotations(_ annotations: [BusStopAnnotation]?) {
-        if let annotations = annotations {
-            DispatchQueue.main.async {
-                self.mapView.removeAnnotations(self.mapView.annotations)
-                self.mapView.addAnnotations(annotations)
-            }
-        }
-    }
-    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let centerPoint = mapView.centerCoordinate;
         busStops.updateBusStops(location: centerPoint, callBack: updateBusStopAnnotations)

@@ -14,6 +14,8 @@ class MapViewController: UIViewController {
     var busStops = BusStops()
     var timer = Timer()
     var locationMgr = CLLocationManager()
+    var busAnnotations = [BusAnnotation]()
+    var busStopAnnotations = [BusStopAnnotation]()
  
     @IBOutlet weak var mapView: MKMapView!
 
@@ -24,14 +26,24 @@ class MapViewController: UIViewController {
     func updateAnnotations(_ annotations: [BusAnnotation]?) {
         if let annotations = annotations {
             DispatchQueue.main.async {
-                self.mapView.removeAnnotations(self.mapView.annotations)
+                self.mapView.removeAnnotations(self.busAnnotations/*self.mapView.annotations*/)
                 self.mapView.addAnnotations(annotations)
+                self.busAnnotations.removeAll()
+                self.busAnnotations.append(contentsOf: annotations)
             }
         }
     }
 
     func updateBusLocation() {
         busLocation.updateBusInformation(updateAnnotations)
+    }
+    
+    func updateBusStopAnnotations(_ annotations: [BusStopAnnotation]?) {
+        if let annotations = annotations {
+            DispatchQueue.main.async {
+                self.mapView.addAnnotations(annotations)
+            }
+        }
     }
     
     override func viewDidLoad() {
