@@ -14,8 +14,6 @@ class MapViewController: UIViewController {
     var busStops = BusStops()
     var timer = Timer()
     var locationMgr = CLLocationManager()
-    var busAnnotations = [BusAnnotation]()
-    var busStopAnnotations = [BusStopAnnotation]()
  
     @IBOutlet weak var mapView: MKMapView!
 
@@ -26,10 +24,9 @@ class MapViewController: UIViewController {
     func updateAnnotations(_ annotations: [BusAnnotation]?) {
         if let annotations = annotations {
             DispatchQueue.main.async {
-                self.mapView.removeAnnotations(self.busAnnotations/*self.mapView.annotations*/)
+                self.mapView.removeAnnotations(self.busLocation.locationAnnotations)
                 self.mapView.addAnnotations(annotations)
-                self.busAnnotations.removeAll()
-                self.busAnnotations.append(contentsOf: annotations)
+                self.busLocation.setLocationAnnotation(annotations: annotations)
             }
         }
     }
@@ -61,6 +58,8 @@ class MapViewController: UIViewController {
         mapView.setRegion(region, animated: true)
         
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updateBusLocation), userInfo: nil, repeats: true)
+        
+        busStops.readCredentials()
     }
     
     override func didReceiveMemoryWarning() {
