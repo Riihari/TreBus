@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TreBus/BusStops.swift"
-            timestampString = "501844681.313057"
+            timestampString = "501845576.059878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "updateBusStops(location:callBack:)"
             landmarkType = "7">
          </BreakpointContent>
