@@ -12,6 +12,7 @@ import MapKit
 class BusStops: NSObject {
     var user = ""
     var pass = ""
+    var annotations: Dictionary<String, BusStopAnnotation> = [:]
     
     func readCredentials() {
         guard let path = Bundle.main.path(forResource: "credentials", ofType: "txt") else {
@@ -37,26 +38,24 @@ class BusStops: NSObject {
             if error != nil {
                 print("BusStop HTTP " + error!)
             } else {
-                let annotations = self.parseBusStops(data: data)
-                callBack(annotations)
+                self.parseBusStops(data: data)
+                let annotationsArray = [BusStopAnnotation](self.annotations.values)
+                callBack(annotationsArray)
             }
         }
     }
     
-    func parseBusStops(data: [Dictionary<String, AnyObject>]) -> [BusStopAnnotation] {
-        var annotations = [BusStopAnnotation]()
+    func parseBusStops(data: [Dictionary<String, AnyObject>]) {
         for dict: Dictionary<String, AnyObject> in data {
             if let code = dict["code"] as? String, let name = dict["name"] as? String, let coords = dict["coords"] as? String {
-                print("Code: \(code), Name: \(name), Coords: \(coords)")
                 let coordinates = coords.components(separatedBy: ",")
                 let longitude: Double = Double(coordinates[0])!
                 let latitude: Double = Double(coordinates[1])!
-                print("longitude: \(longitude), latitude: \(latitude)")
                 let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 let annotation = BusStopAnnotation(name: name, location: coordinate)
-                annotations.append(annotation)
+                annotations[code] = annotation
+                print("Stops: \(annotations.count)")
             }
         }
-        return annotations
     }
 }
