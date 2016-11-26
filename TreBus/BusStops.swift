@@ -10,12 +10,10 @@ import Foundation
 import MapKit
 
 class BusStops: NSObject {
-    var annotations = [BusStopAnnotation]()
+    var user = ""
+    var pass = ""
     
-    func updateBusStops(location: CLLocationCoordinate2D, callBack: @escaping ([BusStopAnnotation]?) -> Void) {
-        var user = ""
-        var pass = ""
-        
+    func readCredentials() {
         guard let path = Bundle.main.path(forResource: "credentials", ofType: "txt") else {
             print("No password file!")
             return
@@ -27,23 +25,26 @@ class BusStops: NSObject {
             pass = credentials[1]
         }
         catch {
-           print("Error reading password file")
+            print("Error reading password file")
         }
-        
+    }
+    
+    func updateBusStops(location: CLLocationCoordinate2D, callBack: @escaping ([BusStopAnnotation]?) -> Void) {
         let httpHelper = HttpHelper()
         
         httpHelper.HTTPGetJSONArray("http://api.publictransport.tampere.fi/prod/?request=stops_area&epsg_in=wgs84&epsg_out=wgs84&user=\(user)&pass=\(pass)&center_coordinate=\(location.longitude),\(location.latitude)&diameter=5000") {
             (data: [Dictionary<String, AnyObject>], error: String?) -> Void in
             if error != nil {
-                print(error)
+                print("BusStop HTTP " + error!)
             } else {
-                self.parseBusStops(data: data)
-                callBack(self.annotations)
+                let annotations = self.parseBusStops(data: data)
+                callBack(annotations)
             }
         }
     }
     
-    func parseBusStops(data: [Dictionary<String, AnyObject>]) {
+    func parseBusStops(data: [Dictionary<String, AnyObject>]) -> [BusStopAnnotation] {
+        var annotations = [BusStopAnnotation]()
         for dict: Dictionary<String, AnyObject> in data {
             if let code = dict["code"] as? String, let name = dict["name"] as? String, let coords = dict["coords"] as? String {
                 print("Code: \(code), Name: \(name), Coords: \(coords)")
@@ -56,5 +57,6 @@ class BusStops: NSObject {
                 annotations.append(annotation)
             }
         }
+        return annotations
     }
 }

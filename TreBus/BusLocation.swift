@@ -11,7 +11,12 @@ import MapKit
 
 class BusLocation: NSObject {
     
-    var annotations = [BusAnnotation]()
+    var locationAnnotations = [BusAnnotation]()
+    
+    func setLocationAnnotation(annotations: [BusAnnotation]) -> Void {
+        locationAnnotations.removeAll()
+        locationAnnotations.append(contentsOf: annotations)
+    }
     
     // MARK: HTTP and JSON to get traffic data
     func updateBusInformation(_ callBack: @escaping ([BusAnnotation]?) -> Void) {
@@ -20,52 +25,53 @@ class BusLocation: NSObject {
         httpHelper.HTTPGetJSON("http://data.itsfactory.fi/siriaccess/vm/json") {
             (data: Dictionary<String, AnyObject>, error: String?) -> Void in
             if error != nil {
-                print(error)
+                print("BusLocation HTTP " + error!)
                 callBack(nil)
             } else {
-                self.annotations.removeAll()
-                self.parseBusLocations(data)
-                callBack(self.annotations)
+                let annotations = self.parseBusLocations(data)
+                callBack(annotations)
             }
         }
     }
 
-    func parseBusLocations(_ data: [String: Any]) -> Void {
+    func parseBusLocations(_ data: [String: Any]) -> [BusAnnotation] {
+        var annotations = [BusAnnotation]()
         guard let feed = data["Siri"] as? [String: Any] else {
-            return
+            return annotations
         }
         
         guard let service = feed["ServiceDelivery"] as? [String: Any] else {
-            return
+            return annotations
         }
         
         guard let entries = service["VehicleMonitoringDelivery"] as? [[String: Any]] else {
-            return
+            return annotations
         }
         
         for entry in entries {
             guard let activities = entry["VehicleActivity"] as? [[String: Any]] else {
-                return
+                return annotations
             }
             
             for activity in activities {
                 guard let journey = activity["MonitoredVehicleJourney"] as? NSDictionary else {
-                    return
+                    return annotations
                 }
                 
                 guard let vehicleLoc = journey["VehicleLocation"] as? NSDictionary, let lineRef = journey["LineRef"] as? NSDictionary, let vehicleRef = journey["VehicleRef"] as? NSDictionary, let destinationRef = journey["DestinationName"] as? NSDictionary, let originRef = journey["OriginName"] as? NSDictionary else {
-                    return
+                    return annotations
                 }
                 
                 guard let line = lineRef["value"] as? String, let latitude = vehicleLoc["Latitude"] as? Double, let longitude = vehicleLoc["Longitude"] as? Double, let vehicle = vehicleRef["value"] as? String, let destination = destinationRef["value"] as? String, let origin = originRef["value"] as? String else {
-                    return
+                    return annotations
                 }
 
                 let annotationLoc = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 let annotation = BusAnnotation(lineRef: line, vehicleRef: vehicle, location: annotationLoc, origin: origin, destination: destination)
 
-                self.annotations.append(annotation)
+                annotations.append(annotation)
             }
         }
+        return annotations
     }
 }
