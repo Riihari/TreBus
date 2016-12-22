@@ -42,7 +42,10 @@ class MapViewController: UIViewController {
                     if (annotationIndex != nil) {
                         let existingAnnotation: BusAnnotation? = self.mapView.annotations[annotationIndex!] as? BusAnnotation
 
-                        existingAnnotation!.coordinate = updatedAnnotation.coordinate
+                        UIView.animate(withDuration: 1, delay: 0.0, options: [.curveLinear], animations: {
+                            existingAnnotation!.coordinate.longitude = updatedAnnotation.coordinate.longitude
+                            existingAnnotation!.coordinate.latitude = updatedAnnotation.coordinate.latitude
+                        }, completion: nil)
 
                         // Remove from the to-be-removed annotations list
                         let obsoleteIndex = obsoleteAnnotations.index(where: { (match) -> Bool in
