@@ -54,7 +54,7 @@ class BusStops: NSObject {
                 let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 let annotation = BusStopAnnotation(name: name, location: coordinate)
                 annotations[code] = annotation
-                print("Stops: \(annotations.count)")
+                //print("Stops: \(annotations.count)")
             }
         }
     }
