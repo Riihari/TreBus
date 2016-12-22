@@ -22,11 +22,46 @@ class MapViewController: UIViewController {
     }
 
     func updateAnnotations(_ annotations: [BusAnnotation]?) {
-        if let annotations = annotations {
+        if let updatedAnnotations = annotations {
             DispatchQueue.main.async {
-                self.mapView.removeAnnotations(self.busLocation.locationAnnotations)
-                self.mapView.addAnnotations(annotations)
-                self.busLocation.setLocationAnnotation(annotations: annotations)
+                var obsoleteAnnotations = self.busLocation.locationAnnotations
+
+                var newAnnotations: [BusAnnotation] = []
+
+                for updatedAnnotation in updatedAnnotations {
+
+                    // Find matching annotation reference in MapView
+                    let annotationIndex = self.mapView.annotations.index(where: { (match: MKAnnotation) -> Bool in
+                        guard let existingBusAnnotation = match as? BusAnnotation else {
+                            return false
+                        }
+                        return updatedAnnotation.vehicleRef!.compare(existingBusAnnotation.vehicleRef!) == ComparisonResult.orderedSame
+                    })
+
+                    // Update coordinate only
+                    if (annotationIndex != nil) {
+                        let existingAnnotation: BusAnnotation? = self.mapView.annotations[annotationIndex!] as? BusAnnotation
+
+                        existingAnnotation!.coordinate = updatedAnnotation.coordinate
+
+                        // Remove from the to-be-removed annotations list
+                        let obsoleteIndex = obsoleteAnnotations.index(where: { (match) -> Bool in
+                            return match.vehicleRef!.compare(updatedAnnotation.vehicleRef!) == ComparisonResult.orderedSame
+                        })
+                        if (obsoleteIndex != nil) {
+                            obsoleteAnnotations.remove(at: obsoleteIndex!)
+                        }
+                    }
+                    // Add new annotation
+                    else {
+                        newAnnotations.append(updatedAnnotation)
+                    }
+                }
+
+                self.mapView.removeAnnotations(obsoleteAnnotations)
+                self.mapView.addAnnotations(newAnnotations)
+
+                self.busLocation.setLocationAnnotation(annotations: updatedAnnotations)
             }
         }
     }

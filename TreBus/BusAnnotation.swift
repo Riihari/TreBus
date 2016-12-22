@@ -11,7 +11,7 @@ import MapKit
 class BusAnnotation: NSObject, MKAnnotation {
     let title: String?
     let subtitle: String?
-    var coordinate: CLLocationCoordinate2D
+    dynamic var coordinate: CLLocationCoordinate2D
     let image: UIImage?
     let vehicleRef: String?
     
