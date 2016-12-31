@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C011B04B1DE7499D00644314 /* credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = C011B04A1DE7499D00644314 /* credentials.txt */; };
 		C03BF1F11CD62D600068A016 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF1F01CD62D600068A016 /* MapViewController.swift */; };
+		C06FAA391E16BAF8002DF226 /* BusStopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06FAA381E16BAF8002DF226 /* BusStopAnnotationView.swift */; };
+		C07083461E16F93300A1F5C1 /* TimeTableCallout.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07083451E16F93300A1F5C1 /* TimeTableCallout.xib */; };
+		C07083481E16FA8300A1F5C1 /* TimeTableCallout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07083471E16FA8300A1F5C1 /* TimeTableCallout.swift */; };
 		C09BF37C1D75F29F001874A1 /* BusLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF37B1D75F29F001874A1 /* BusLocation.swift */; };
 		C09BF37E1D75F391001874A1 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF37D1D75F391001874A1 /* HttpHelper.swift */; };
 		C09BF38A1D7730B6001874A1 /* BusAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF3891D7730B6001874A1 /* BusAnnotation.swift */; };
@@ -44,6 +47,9 @@
 /* Begin PBXFileReference section */
 		C011B04A1DE7499D00644314 /* credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credentials.txt; sourceTree = "<group>"; };
 		C03BF1F01CD62D600068A016 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
+		C06FAA381E16BAF8002DF226 /* BusStopAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopAnnotationView.swift; sourceTree = "<group>"; };
+		C07083451E16F93300A1F5C1 /* TimeTableCallout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeTableCallout.xib; sourceTree = "<group>"; };
+		C07083471E16FA8300A1F5C1 /* TimeTableCallout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableCallout.swift; sourceTree = "<group>"; };
 		C09BF37B1D75F29F001874A1 /* BusLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusLocation.swift; sourceTree = "<group>"; };
 		C09BF37D1D75F391001874A1 /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		C09BF3891D7730B6001874A1 /* BusAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusAnnotation.swift; sourceTree = "<group>"; };
@@ -90,9 +96,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C07083491E16FBA200A1F5C1 /* TimeTableCallout */ = {
+			isa = PBXGroup;
+			children = (
+				C07083451E16F93300A1F5C1 /* TimeTableCallout.xib */,
+				C07083471E16FA8300A1F5C1 /* TimeTableCallout.swift */,
+			);
+			name = TimeTableCallout;
+			sourceTree = "<group>";
+		};
 		C0CB6D1B1CC3613E0027610F = {
 			isa = PBXGroup;
 			children = (
+				C07083491E16FBA200A1F5C1 /* TimeTableCallout */,
 				C0CB6D261CC3613E0027610F /* TreBus */,
 				C0CB6D3D1CC3613E0027610F /* TreBusTests */,
 				C0CB6D481CC3613E0027610F /* TreBusUITests */,
@@ -123,6 +139,7 @@
 				C03BF1F01CD62D600068A016 /* MapViewController.swift */,
 				C09BF38D1D7B6999001874A1 /* CLLocationManagerDelegate.swift */,
 				C09BF38B1D773354001874A1 /* MapViewDelegate.swift */,
+				C06FAA381E16BAF8002DF226 /* BusStopAnnotationView.swift */,
 				C09BF3891D7730B6001874A1 /* BusAnnotation.swift */,
 				C0CB6D301CC3613E0027610F /* Assets.xcassets */,
 				C0CB6D321CC3613E0027610F /* LaunchScreen.storyboard */,
@@ -261,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0CB6D341CC3613E0027610F /* LaunchScreen.storyboard in Resources */,
+				C07083461E16F93300A1F5C1 /* TimeTableCallout.xib in Resources */,
 				C0CB6D311CC3613E0027610F /* Assets.xcassets in Resources */,
 				C0CB6D2F1CC3613E0027610F /* Main.storyboard in Resources */,
 				C011B04B1DE7499D00644314 /* credentials.txt in Resources */,
@@ -292,9 +310,11 @@
 				C09BF38E1D7B699A001874A1 /* CLLocationManagerDelegate.swift in Sources */,
 				C09BF37C1D75F29F001874A1 /* BusLocation.swift in Sources */,
 				C09BF38A1D7730B6001874A1 /* BusAnnotation.swift in Sources */,
+				C06FAA391E16BAF8002DF226 /* BusStopAnnotationView.swift in Sources */,
 				C0CB6D281CC3613E0027610F /* AppDelegate.swift in Sources */,
 				C0A5DF5F1D9D89BD003873DF /* BusStopAnnotation.swift in Sources */,
 				C0A5DF611D9D8AA0003873DF /* BusStops.swift in Sources */,
+				C07083481E16FA8300A1F5C1 /* TimeTableCallout.swift in Sources */,
 				C03BF1F11CD62D600068A016 /* MapViewController.swift in Sources */,
 				C09BF37E1D75F391001874A1 /* HttpHelper.swift in Sources */,
 			);
