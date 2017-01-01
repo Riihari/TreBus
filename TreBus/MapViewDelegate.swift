@@ -65,6 +65,8 @@ extension MapViewController: MKMapViewDelegate {
         let views = Bundle.main.loadNibNamed("TimeTableCallout", owner: nil, options: nil)
         let calloutView = views?[0] as! TimeTableCallout
         
+        calloutView.busStopAnnotation = annotation
+        
         calloutView.titleLabel.text = annotation.title
         calloutView.timeTable.delegate = calloutView
         calloutView.timeTable.dataSource = calloutView
@@ -72,6 +74,8 @@ extension MapViewController: MKMapViewDelegate {
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
         view.addSubview(calloutView)
         mapView.setCenter((view.annotation?.coordinate)!, animated: true)
+        
+        busStops.updateTimeTables(annotation: annotation, tableview: calloutView.timeTable)
     }
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {

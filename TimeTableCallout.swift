@@ -13,8 +13,10 @@ class TimeTableCallout: UIView, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeTable: UITableView!
     
+    var busStopAnnotation: BusStopAnnotation?
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return (busStopAnnotation?.timeTable.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -22,12 +24,7 @@ class TimeTableCallout: UIView, UITableViewDelegate, UITableViewDataSource {
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "timetable")
         }
-        cell?.textLabel?.text = "Number: \(indexPath.row)"
+        cell?.textLabel?.text = busStopAnnotation?.timeTable[indexPath.row]
         return cell!
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
 }
