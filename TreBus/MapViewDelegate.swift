@@ -27,16 +27,36 @@ extension MapViewController: MKMapViewDelegate {
             return view
         }
         else if let annotation = annotation as? BusStopAnnotation {
-            var view: BusStopAnnotationView
+            var view: MKAnnotationView
             let identifier = "stop"
             
             if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
                 dequedView.annotation = annotation
-                view = dequedView as! BusStopAnnotationView
+                view = dequedView
             } else {
-                view = BusStopAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = false
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
             }
+            
+            let calloutView = UIView()
+            
+            let calloutTableView = UITableView(frame: CGRect(x: 0, y: 0, width: 200, height: 100), style: .plain)
+            calloutTableView.delegate = annotation
+            calloutTableView.dataSource = annotation
+            
+            calloutView.addSubview(calloutTableView)
+
+            let tableWidthConstraint = NSLayoutConstraint(item: calloutTableView, attribute: .width, relatedBy: .lessThanOrEqual, toItem: calloutView, attribute: .width, multiplier: 1, constant: 0)
+            calloutView.addConstraint(tableWidthConstraint)
+            let tableHeightConstraint = NSLayoutConstraint(item: calloutView, attribute: .height, relatedBy: .lessThanOrEqual, toItem: calloutView, attribute: .width, multiplier: 1, constant: 0)
+            calloutView.addConstraint(tableHeightConstraint)
+
+           let widthConstraint = NSLayoutConstraint(item: calloutView, attribute: .width, relatedBy: .equal, toItem: nil,attribute: .notAnAttribute, multiplier: 1, constant: 200)
+            calloutView.addConstraint(widthConstraint)
+            let heightConstraint = NSLayoutConstraint(item: calloutView, attribute: .height, relatedBy: .equal, toItem: nil,attribute: .notAnAttribute, multiplier: 1, constant: 100)
+            calloutView.addConstraint(heightConstraint)
+
+            view.detailCalloutAccessoryView = calloutView
             
             view.image = annotation.image
             return view
@@ -44,45 +64,9 @@ extension MapViewController: MKMapViewDelegate {
         
         return nil
     }
-    
+
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let centerPoint = mapView.centerCoordinate;
         busStops.updateBusStops(location: centerPoint, callBack: updateBusStopAnnotations)
-    }
-
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
-    {
-        if(view.annotation is MKUserLocation) {
-            // Don't proceed with custom callout
-            return
-        }
-
-        if(view.annotation is BusAnnotation) {
-            return
-        }
-        
-        let annotation = view.annotation as! BusStopAnnotation
-        let views = Bundle.main.loadNibNamed("TimeTableCallout", owner: nil, options: nil)
-        let calloutView = views?[0] as! TimeTableCallout
-        
-        calloutView.busStopAnnotation = annotation
-        
-        calloutView.titleLabel.text = annotation.title
-        calloutView.timeTable.delegate = calloutView
-        calloutView.timeTable.dataSource = calloutView
-
-        calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
-        view.addSubview(calloutView)
-        mapView.setCenter((view.annotation?.coordinate)!, animated: true)
-        
-        busStops.updateTimeTables(annotation: annotation, tableview: calloutView.timeTable)
-    }
-
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        if(view.isKind(of: BusStopAnnotationView.self)) {
-            for subview in view.subviews {
-                subview.removeFromSuperview()
-            }
-        }
     }
 }
