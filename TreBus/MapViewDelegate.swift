@@ -57,8 +57,10 @@ extension MapViewController: MKMapViewDelegate {
             calloutView.addConstraint(heightConstraint)
 
             view.detailCalloutAccessoryView = calloutView
-            
             view.image = annotation.image
+            
+            busStops.updateTimeTables(annotation: annotation, tableview: calloutTableView)
+
             return view
         }
         

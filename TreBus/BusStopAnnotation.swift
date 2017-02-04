@@ -9,8 +9,6 @@
 import MapKit
 
 class BusStopAnnotation: NSObject, MKAnnotation, UITableViewDelegate, UITableViewDataSource {
-    var times = ["100", "200", "300"]
-
     let title: String?
     var coordinate: CLLocationCoordinate2D
     let image: UIImage?
@@ -27,7 +25,7 @@ class BusStopAnnotation: NSObject, MKAnnotation, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return times.count
+        return timeTable.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,7 +33,7 @@ class BusStopAnnotation: NSObject, MKAnnotation, UITableViewDelegate, UITableVie
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "timetable")
         }
-        cell?.textLabel?.text = times[indexPath.row]
+        cell?.textLabel?.text = timeTable[indexPath.row]
         return cell!
     }
 }
