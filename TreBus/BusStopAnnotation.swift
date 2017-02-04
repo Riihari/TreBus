@@ -34,6 +34,7 @@ class BusStopAnnotation: NSObject, MKAnnotation, UITableViewDelegate, UITableVie
             cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "timetable")
         }
         cell?.textLabel?.text = timeTable[indexPath.row]
+        cell?.textLabel?.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
         return cell!
     }
 }
