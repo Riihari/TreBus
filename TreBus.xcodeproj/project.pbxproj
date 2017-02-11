@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C011B04B1DE7499D00644314 /* credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = C011B04A1DE7499D00644314 /* credentials.txt */; };
+		C01725911E4F01E30026FCAB /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01725901E4F01E30026FCAB /* TimetableViewController.swift */; };
 		C03BF1F11CD62D600068A016 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF1F01CD62D600068A016 /* MapViewController.swift */; };
 		C09BF37C1D75F29F001874A1 /* BusLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF37B1D75F29F001874A1 /* BusLocation.swift */; };
 		C09BF37E1D75F391001874A1 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF37D1D75F391001874A1 /* HttpHelper.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		C011B04A1DE7499D00644314 /* credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credentials.txt; sourceTree = "<group>"; };
+		C01725901E4F01E30026FCAB /* TimetableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		C03BF1F01CD62D600068A016 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
 		C09BF37B1D75F29F001874A1 /* BusLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusLocation.swift; sourceTree = "<group>"; };
 		C09BF37D1D75F391001874A1 /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		C0CB6D261CC3613E0027610F /* TreBus */ = {
 			isa = PBXGroup;
 			children = (
+				C01725901E4F01E30026FCAB /* TimetableViewController.swift */,
 				C011B04A1DE7499D00644314 /* credentials.txt */,
 				C0CB6D271CC3613E0027610F /* AppDelegate.swift */,
 				C0CB6D2D1CC3613E0027610F /* Main.storyboard */,
@@ -290,6 +293,7 @@
 			files = (
 				C09BF38C1D773354001874A1 /* MapViewDelegate.swift in Sources */,
 				C09BF38E1D7B699A001874A1 /* CLLocationManagerDelegate.swift in Sources */,
+				C01725911E4F01E30026FCAB /* TimetableViewController.swift in Sources */,
 				C09BF37C1D75F29F001874A1 /* BusLocation.swift in Sources */,
 				C09BF38A1D7730B6001874A1 /* BusAnnotation.swift in Sources */,
 				C0CB6D281CC3613E0027610F /* AppDelegate.swift in Sources */,

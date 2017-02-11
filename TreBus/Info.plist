@@ -6,6 +6,11 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>aikataulut.tampere.fi</key>
+			<dict>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>api.publictransport.tampere.fi</key>
 			<dict>
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>

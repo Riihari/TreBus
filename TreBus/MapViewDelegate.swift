@@ -57,6 +57,7 @@ extension MapViewController: MKMapViewDelegate {
             calloutView.addConstraint(heightConstraint)
 
             view.detailCalloutAccessoryView = calloutView
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             view.image = annotation.image
             
             busStops.updateTimeTables(annotation: annotation, tableview: calloutTableView)
@@ -70,5 +71,11 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let centerPoint = mapView.centerCoordinate;
         busStops.updateBusStops(location: centerPoint, callBack: updateBusStopAnnotations)
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let annotation = view.annotation as! BusStopAnnotation
+        self.detailedStop = annotation.code!
+        performSegue(withIdentifier: "TimetableSegue", sender: self)
     }
 }

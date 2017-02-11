@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1zb-4J-RL7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1zb-4J-RL7">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,8 +22,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sjT-Ij-0NH"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sjT-Ij-0NH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                            </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="u8p-xd-j4e">
+                                <rect key="frame" x="100" y="631" width="214" height="29"/>
                                 <segments>
                                     <segment title="Map"/>
                                     <segment title="Satellite"/>
@@ -31,6 +37,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9g-gM-BFW">
+                                <rect key="frame" x="22" y="629" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="2Sj-gb-8j0"/>
                                     <constraint firstAttribute="height" constant="30" id="35P-Op-N4x"/>
@@ -56,14 +63,70 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="bwY-bu-Xj5"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="sjT-Ij-0NH" id="W5u-Dx-I6y"/>
+                        <segue destination="rlw-mX-IZQ" kind="show" identifier="TimetableSegue" id="kYe-Yb-iEV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVt-hg-7aP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79.200000000000003" y="25.637181409295355"/>
+            <point key="canvasLocation" x="959" y="26"/>
+        </scene>
+        <!--Timetable View Controller-->
+        <scene sceneID="iFJ-fV-xSr">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="yNW-LK-mSI" customClass="TimetableViewController" customModule="TreBus" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4kj-GO-XlQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="xca-Ga-BXa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZbQ-2z-UpG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KP8-vx-Bpy">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QAK-ZX-Ayz">
+                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="TiF-V3-HzP">
+                            <connections>
+                                <segue destination="Ojg-WT-Ohq" kind="unwind" unwindAction="fromTimetableWithSegue:" id="oAI-Lf-VRW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="KP8-vx-Bpy" id="VY1-dE-XW7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VbU-Y8-MUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Ojg-WT-Ohq" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2872.8000000000002" y="25.637181409295355"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hUQ-X2-fbf">
+            <objects>
+                <navigationController id="rlw-mX-IZQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uef-Oy-RYP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yNW-LK-mSI" kind="relationship" relationship="rootViewController" id="HHw-Cg-NRc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7FW-6f-kjk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1933.5999999999999" y="25.637181409295355"/>
         </scene>
     </scenes>
     <resources>

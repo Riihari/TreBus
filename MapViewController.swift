@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
     var busStops = BusStops()
     var timer = Timer()
     var locationMgr = CLLocationManager()
+    var detailedStop = String()
  
     @IBOutlet weak var mapView: MKMapView!
 
@@ -130,15 +131,15 @@ class MapViewController: UIViewController {
         }
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navController = segue.destination as! UINavigationController
+        let destination = navController.viewControllers.first as! TimetableViewController
+        destination.stop = detailedStop
     }
-    */
     
     // MARK: - Location manager to authorize user location for Maps app
     func checkLocationAuthorizationStatus () {
@@ -149,5 +150,8 @@ class MapViewController: UIViewController {
         else {
             locationMgr.requestWhenInUseAuthorization()
         }
+    }
+    
+    @IBAction func fromTimetable(segue: UIStoryboardSegue) {
     }
 }
