@@ -99,23 +99,15 @@ class MapViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updateBusLocation), userInfo: nil, repeats: true)
         
         busStops.readCredentials()
+        
+        checkLocationAuthorizationStatus()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = "Bussikartta"
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        checkLocationAuthorizationStatus()
-    }
-    
     // MARK: - Segmented control for map types
-    
     enum MapType: Int {
         case standard = 0
         case satellite
