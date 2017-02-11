@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1zb-4J-RL7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L2P-6s-FsI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -67,12 +67,12 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="sjT-Ij-0NH" id="W5u-Dx-I6y"/>
-                        <segue destination="rlw-mX-IZQ" kind="show" identifier="TimetableSegue" id="kYe-Yb-iEV"/>
+                        <segue destination="yNW-LK-mSI" kind="show" identifier="TimetableSegue" id="sA8-u4-aJR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVt-hg-7aP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="959" y="26"/>
+            <point key="canvasLocation" x="1896.8" y="25.637181409295355"/>
         </scene>
         <!--Timetable View Controller-->
         <scene sceneID="iFJ-fV-xSr">
@@ -94,39 +94,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QAK-ZX-Ayz">
-                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="TiF-V3-HzP">
-                            <connections>
-                                <segue destination="Ojg-WT-Ohq" kind="unwind" unwindAction="fromTimetableWithSegue:" id="oAI-Lf-VRW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="QAK-ZX-Ayz"/>
                     <connections>
                         <outlet property="webView" destination="KP8-vx-Bpy" id="VY1-dE-XW7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VbU-Y8-MUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Ojg-WT-Ohq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2872.8000000000002" y="25.637181409295355"/>
+            <point key="canvasLocation" x="2776.8000000000002" y="25.637181409295355"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="hUQ-X2-fbf">
+        <scene sceneID="MO1-Kw-ocp">
             <objects>
-                <navigationController id="rlw-mX-IZQ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L2P-6s-FsI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uef-Oy-RYP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7mD-rS-b5y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="yNW-LK-mSI" kind="relationship" relationship="rootViewController" id="HHw-Cg-NRc"/>
+                        <segue destination="1zb-4J-RL7" kind="relationship" relationship="rootViewController" id="HcE-Ch-cRT"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7FW-6f-kjk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oje-4L-flh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1933.5999999999999" y="25.637181409295355"/>
+            <point key="canvasLocation" x="957.60000000000002" y="25.637181409295355"/>
         </scene>
     </scenes>
     <resources>

@@ -101,6 +101,9 @@ class MapViewController: UIViewController {
         busStops.readCredentials()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "Bussikartta"
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -136,8 +139,7 @@ class MapViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navController = segue.destination as! UINavigationController
-        let destination = navController.viewControllers.first as! TimetableViewController
+        let destination = segue.destination as! TimetableViewController
         destination.stop = detailedStop
     }
     
